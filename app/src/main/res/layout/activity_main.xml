@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="#3A3838"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:onClick="onClickImage"
+                app:srcCompat="@drawable/p1" />
+
+            <TextView
+                android:id="@+id/textView1_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ЧОРНОБИЛЬ."
+                android:gravity="center"
+                android:textColor="#F4ECEC" />
+
+            <TextView
+                android:id="@+id/textView1_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ВІДРОДЖЕННЯ."
+                android:gravity="center"
+                android:textColor="#F3EBEB" />
+
+            <TextView
+                android:id="@+id/textView1_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ВЕДМІДЬ БУРИЙ (Н)"
+                android:gravity="center"
+                android:textColor="#F3EBEB" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/elizaveta" />
+
+            <TextView
+                android:id="@+id/textView2_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ЄЛИЗАВЕТА "
+                android:textColor="#F4ECEC" />
+
+            <TextView
+                android:id="@+id/textView2_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ЯРОСЛАВНА (Н)"
+                android:textColor="#F3EBEB" />
+
+            <TextView
+                android:id="@+id/textView2_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="56 g"
+                android:textColor="#F3EBEB" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/p2" />
+
+            <TextView
+                android:id="@+id/textView3_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ДЕРЖАВНА СЛУЖБА"
+                android:textColor="#F4ECEC" />
+
+            <TextView
+                android:id="@+id/textView3_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ЗВ'ЯЗКУ ТА ЗАХИСТУ."
+                android:textColor="#F3EBEB" />
+
+            <TextView
+                android:id="@+id/textView3_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ІНФОРМАЦІЇ УКРАЇНИ"
+                android:textColor="#F3EBEB" />
+
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/p3" />
+
+            <TextView
+                android:id="@+id/textView4_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ВОЛОДИМИРСЬКИЙ СОБОР "
+                android:textColor="#F4ECEC" />
+
+            <TextView
+                android:id="@+id/textView4_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="У М. КИЇВ (Н)"
+                android:textColor="#F3EBEB" />
+
+            <TextView
+                android:id="@+id/textView4_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="107 g"
+                android:textColor="#F3EBEB" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
