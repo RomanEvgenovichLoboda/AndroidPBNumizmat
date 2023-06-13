@@ -1,18 +1,25 @@
 package com.example.androidpbnumizmat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,7 +32,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Animation animation;
+    public boolean isDark = false;
     boolean check = false;
+    SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +42,74 @@ public class MainActivity extends AppCompatActivity {
 
         animation = AnimationUtils.loadAnimation(this, R.anim.animate);
         loadApplication();
+
+        db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS themes ( theme TEXT)");
+
+        Cursor query = db.rawQuery("SELECT * FROM themes;", null);
+        String txt="";
+        while(query.moveToNext()){
+            txt=query.getString(0);
+        }
+        if(txt.equals("MODE_NIGHT_YES")){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            isDark=true;
+        }
+        else if(txt.equals("MODE_NIGHT_NO")){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            isDark=false;
+        }
+        query.close();
+        db.close();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        //ContentValues values=new ContentValues();
+        //TextView headerView = findViewById(R.id.selectedMenuItem);
+        switch(id){
+            case R.id.action_settings :
+                //headerView.setText("Настройки");
+                Toast.makeText(getApplicationContext(),"Settings", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.open_settings:
+                //headerView.setText("Открыть");
+                Toast.makeText(getApplicationContext(),"Open", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.save_settings:
+                //headerView.setText("Сохранить");
+                Toast.makeText(getApplicationContext(),"Save", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.change_theme:
+//                if(isDark) {
+//                    //setTheme(R.style.Theme_AndroidThemes);
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                    isDark=false;
+//                    values.put("theme","MODE_NIGHT_NO");
+//                    db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+//                    db.insert("themes",null,values);
+//                    db.close();
+//                }
+//                else {
+//                    //setTheme(com.google.android.material.R.style.Base_Theme_Material3_Dark);
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                    isDark=true;
+//                    values.put("theme","MODE_NIGHT_YES");
+//                    db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+//                    db.insert("themes",null,values);
+//                    db.close();
+//                }
+                changeTheme();
+                return true;
+        }
+        //headerView.setText(item.getTitle());
+        return super.onOptionsItemSelected(item);
     }
 
     private ArrayList<Coin> parseHtml() throws IOException {
@@ -154,5 +231,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+
+    public void changeTheme() {
+
+        ContentValues values=new ContentValues();
+        if(isDark) {
+            //setTheme(R.style.Theme_AndroidThemes);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            isDark=false;
+            values.put("theme","MODE_NIGHT_NO");
+            db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+            db.insert("themes",null,values);
+            db.close();
+        }
+        else {
+            //setTheme(com.google.android.material.R.style.Base_Theme_Material3_Dark);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            isDark=true;
+            values.put("theme","MODE_NIGHT_YES");
+            db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+            db.insert("themes",null,values);
+            db.close();
+        }
     }
 }
